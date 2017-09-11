@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/layout :: htmlhead(~{::title})">
+  <title>評価点の入力</title>
+</head>
+<body>
+<div class="ui container">
+
+  <div class="ui vertical segment">
+    <h1 class="ui header">評価点の入力</h1>
+  </div>
+
+  <div class="ui vertical segment">
+
+    <div class="ui form">
+      <form id="custom-form" class="ui form"
+            name="body" method="post" action="#"
+            th:object="${evaluation}"
+            th:action="@{/user/{userId}/evaluate/complete(userId=${identifier})}">
+        <div th:replace="fragments/input::macro('value','評価','0.0の形式で入力してください')">
+          <label>評価</label>
+          <input type="text">
+        </div>
+        <div class="ui left pointing red basic label"
+             th:if="${#fields.hasErrors('validStep')}">
+          <span th:errors="*{validStep}">エラー</span>
+        </div>
+        <div class="ui basic segment">
+          <button class="ui secondary basic button">保存</button>
+          <a th:href="@{/}">一覧に戻る</a>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+<footer th:include="fragments/layout :: footer"/>
+</body>
+</html>

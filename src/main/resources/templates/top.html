@@ -20,7 +20,8 @@
       <thead>
         <tr>
         <th>利用者ID</th>
-        <th>利用者名</th>
+          <th>利用者名</th>
+          <th>評価点</th>
         <th></th>
         <th></th>
         </tr>
@@ -29,6 +30,7 @@
       <tr th:each="user : ${users.list()}">
         <td th:text="${user.identifier()}"/>
         <td th:text="${user.name()}"/>
+        <td><a href="#" th:href="@{/user/{userId}/evaluate(userId=${user.identifier()})}" th:text="${user.evaluation()}">3.5</a></td>
         <td>
         <a class="ui secondary basic button"
            th:href="@{/user/{userId}/update(userId=${user.identifier()})}">変更</a>
